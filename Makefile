@@ -1,6 +1,6 @@
 IMAGE_NAME=registry.gitlab.com/cicdprojects/resumecv-backend
 CONTAINER_NAME=resumecv-backend
-VERSION=0.1.0-dev
+VERSION=0.2.0-dev
 
 build:
 	docker build --tag $(IMAGE_NAME):$(VERSION) --file dockerfiles/app/Dockerfile.production  "."

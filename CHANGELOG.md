@@ -1,4 +1,7 @@
-# 0.2.0
+# Next version
++ Remove frontend stuffes
+
+## 0.2.0
 + Add Docker production
 + Add Semaphore CI
 
