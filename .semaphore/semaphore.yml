@@ -1,14 +1,16 @@
 version: v1.0
-name: Build and deploy
+name: Resume CV Backend backend CI
 agent:
   machine:
     type: e1-standard-2
-    os_image: ubuntu2004
+
+  containers:
+    - name: main
+      image: sineverba/php8xc:1.11.0
 
 global_job_config:
   secrets:
     - name: ACCESS_TOKENS
-    - name: VPS
 
 blocks:
   - name: "Unit tests"
@@ -16,13 +18,6 @@ blocks:
       when: "tag =~ '.*'"
     task:
       jobs:
-        - name: Deploy to VPS
-          commands:
-            - ssh-keyscan -p $VPS_GCP_PORT -H $VPS_GCP_URL >> ~/.ssh/known_hosts
-            - chmod 0600 ~/.ssh/id_rsa_semaphoreci
-            - ssh-add ~/.ssh/id_rsa_semaphoreci
-            #- ssh -t $VPS_GCP_USERNAME@$VPS_GCP_URL -p $VPS_GCP_PORT "cd $GITLAB_IMAGE_NAME && docker-compose stop && exit"
-            - ssh -t $VPS_GCP_USERNAME@$VPS_GCP_URL -p $VPS_GCP_PORT "ls -a -l"
         - name: "Run PHPUnit"
           commands:
             - checkout
