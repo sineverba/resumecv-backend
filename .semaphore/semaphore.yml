@@ -21,18 +21,16 @@ blocks:
         - name: "Run PHPUnit"
           commands:
             - checkout
-            #- sed -i -e 's,/data,/root/resumecv-backend,g' sonar-project.properties
+            - sed -i -e 's,/data,/root/resumecv-backend,g' sonar-project.properties
             - composer install
             - cp .env.example .env
             - php artisan key:generate
             - ./vendor/bin/phpunit
-            #- vendor/bin/php-cs-fixer fix app --dry-run --rules=@PSR2
-            #- php vendor/bin/php-coveralls --coverage_clover=./coverage/clover.xml --json_path=./coverage/coveralls-upload.json -v
-            #- bash <(curl -s https://codecov.io/bash) -t $CODECOV_TOKEN
-            #- apt-get update -y && apt-get install wget unzip -y
-            #- wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.6.1.2450-linux.zip
-            #- unzip sonar-scanner-cli-4.6.1.2450-linux.zip
-            #- sonar-scanner-4.6.1.2450-linux/bin/sonar-scanner -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_AUTH_TOKEN -Dsonar.projectKey=sineverba_consumptions-backend -Dsonar.organization=sineverba
+            - vendor/bin/php-cs-fixer fix app --dry-run --rules=@PSR2
+            - apt-get update -y && apt-get install wget unzip -y
+            - wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.7.0.2747-linux.zip
+            - unzip sonar-scanner-cli-4.7.0.2747-linux.zip
+            - sonar-scanner-cli-4.7.0.2747-linux/bin/sonar-scanner -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_AUTH_TOKEN -Dsonar.projectKey=sineverba_resumecv-backend -Dsonar.organization=sineverba
 
 promotions:
   - name: Build and production

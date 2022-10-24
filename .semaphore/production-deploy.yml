@@ -40,5 +40,5 @@ blocks:
             - ssh -t $VPS_GCP_USERNAME@$VPS_GCP_URL -p $VPS_GCP_PORT "cd $GITLAB_IMAGE_NAME && docker-compose stop && exit"
             - ssh -t $VPS_GCP_USERNAME@$VPS_GCP_URL -p $VPS_GCP_PORT "docker container rm $GITLAB_IMAGE_NAME && docker image rm $GITLAB_REGISTRY/cicdprojects/$GITLAB_IMAGE_NAME:latest && exit"
             - ssh -t $VPS_GCP_USERNAME@$VPS_GCP_URL -p $VPS_GCP_PORT "docker pull $GITLAB_REGISTRY/cicdprojects/$GITLAB_IMAGE_NAME:latest && exit"
-            #- ssh -t $VPS_GCP_USERNAME@$VPS_GCP_URL -p $VPS_GCP_PORT "sed -i \"/APP_VERSION=/c\APP_VERSION=$SEMAPHORE_GIT_TAG_NAME\" $GITLAB_IMAGE_NAME/.env && exit"
+            - ssh -t $VPS_GCP_USERNAME@$VPS_GCP_URL -p $VPS_GCP_PORT "sed -i \"/APP_VERSION=/c\APP_VERSION=$SEMAPHORE_GIT_TAG_NAME\" $GITLAB_IMAGE_NAME/.env && exit"
             - ssh -t $VPS_GCP_USERNAME@$VPS_GCP_URL -p $VPS_GCP_PORT "cd $GITLAB_IMAGE_NAME && docker-compose up -d && exit"
