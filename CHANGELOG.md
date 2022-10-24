@@ -2,6 +2,7 @@
 + Remove frontend stuffes
 + Add production deployment note
 + Add others CIs / CDs
++ Add `versions` route
 
 ## 0.2.0
 + Add Docker production
