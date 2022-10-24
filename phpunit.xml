@@ -33,5 +33,6 @@
         <env name="SESSION_DRIVER" value="array"/>
         <env name="TELESCOPE_ENABLED" value="false"/>
         <env name="APP_KEY" value="base64:fOzwoINcZUauvaEZUsYpc6g45cY8Qz0MH/qfoV628r4="/>
+        <env name="APP_VERSION" value="9.8.7"/>
     </php>
 </phpunit>
