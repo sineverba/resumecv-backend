@@ -1,12 +1,9 @@
 version: v1.0
-name: Resume CV Backend backend CI
+name: Build and deploy
 agent:
   machine:
     type: e1-standard-2
-
-  containers:
-    - name: main
-      image: sineverba/php8xc:1.11.0
+    os_image: ubuntu2004
 
 global_job_config:
   secrets:
@@ -25,7 +22,7 @@ blocks:
             - chmod 0600 ~/.ssh/id_rsa_semaphoreci
             - ssh-add ~/.ssh/id_rsa_semaphoreci
             #- ssh -t $VPS_GCP_USERNAME@$VPS_GCP_URL -p $VPS_GCP_PORT "cd $GITLAB_IMAGE_NAME && docker-compose stop && exit"
-            - ssh -t $VPS_GCP_USERNAME@$VPS_GCP_URL -p $VPS_GCP_PORT "ll"
+            - ssh -t $VPS_GCP_USERNAME@$VPS_GCP_URL -p $VPS_GCP_PORT "ls -a -l"
         - name: "Run PHPUnit"
           commands:
             - checkout
