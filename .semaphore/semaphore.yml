@@ -8,9 +8,6 @@ agent:
     - name: main
       image: sineverba/php8xc:1.11.0
 
-  image_pull_secrets:
-    - name: DOCKERHUB
-
 global_job_config:
   secrets:
     - name: ACCESS_TOKENS
