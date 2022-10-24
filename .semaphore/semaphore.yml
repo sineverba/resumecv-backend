@@ -25,7 +25,7 @@ blocks:
             - chmod 0600 ~/.ssh/id_rsa_semaphoreci
             - ssh-add ~/.ssh/id_rsa_semaphoreci
             #- ssh -t $VPS_GCP_USERNAME@$VPS_GCP_URL -p $VPS_GCP_PORT "cd $GITLAB_IMAGE_NAME && docker-compose stop && exit"
-            - - ssh -t $VPS_GCP_USERNAME@$VPS_GCP_URL -p $VPS_GCP_PORT "ll"
+            - ssh -t $VPS_GCP_USERNAME@$VPS_GCP_URL -p $VPS_GCP_PORT "ll"
         - name: "Run PHPUnit"
           commands:
             - checkout
