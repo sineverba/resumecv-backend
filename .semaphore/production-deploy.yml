@@ -26,8 +26,8 @@ blocks:
           commands:
             - checkout
             - docker login -u semaphore -p $GITLAB_TOKEN $GITLAB_REGISTRY
-            - docker build --tag $GITLAB_REGISTRY/private-registry/$GITLAB_IMAGE_NAME:latest --file dockerfiles/app/Dockerfile.production "."
-            - docker push $GITLAB_REGISTRY/private-registry/$GITLAB_IMAGE_NAME:latest
+            - docker build --tag $GITLAB_REGISTRY/cicdprojects/$GITLAB_IMAGE_NAME:latest --file dockerfiles/app/Dockerfile.production "."
+            - docker push $GITLAB_REGISTRY/cicdprojects/$GITLAB_IMAGE_NAME:latest
   - name: "Deploy to VPS"
     dependencies: ["Build and deploy image"]
     task:
@@ -38,7 +38,7 @@ blocks:
             - chmod 0600 ~/.ssh/id_rsa_semaphoreci
             - ssh-add ~/.ssh/id_rsa_semaphoreci
             - ssh -t $VPS_GCP_USERNAME@$VPS_GCP_URL -p $VPS_GCP_PORT "cd $GITLAB_IMAGE_NAME && docker-compose stop && exit"
-            - ssh -t $VPS_GCP_USERNAME@$VPS_GCP_URL -p $VPS_GCP_PORT "docker container rm $GITLAB_IMAGE_NAME && docker image rm $GITLAB_REGISTRY/private-registry/$GITLAB_IMAGE_NAME:latest && exit"
-            - ssh -t $VPS_GCP_USERNAME@$VPS_GCP_URL -p $VPS_GCP_PORT "docker pull $GITLAB_REGISTRY/private-registry/$GITLAB_IMAGE_NAME:latest && exit"
+            - ssh -t $VPS_GCP_USERNAME@$VPS_GCP_URL -p $VPS_GCP_PORT "docker container rm $GITLAB_IMAGE_NAME && docker image rm $GITLAB_REGISTRY/cicdprojects/$GITLAB_IMAGE_NAME:latest && exit"
+            - ssh -t $VPS_GCP_USERNAME@$VPS_GCP_URL -p $VPS_GCP_PORT "docker pull $GITLAB_REGISTRY/cicdprojects/$GITLAB_IMAGE_NAME:latest && exit"
             #- ssh -t $VPS_GCP_USERNAME@$VPS_GCP_URL -p $VPS_GCP_PORT "sed -i \"/APP_VERSION=/c\APP_VERSION=$SEMAPHORE_GIT_TAG_NAME\" $GITLAB_IMAGE_NAME/.env && exit"
             - ssh -t $VPS_GCP_USERNAME@$VPS_GCP_URL -p $VPS_GCP_PORT "cd $GITLAB_IMAGE_NAME && docker-compose up -d && exit"
