@@ -4,9 +4,6 @@ CONTAINER_NAME=resumecv-backend
 VERSION=0.2.0-dev
 PWD:=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 
-aaa:
-	echo $(PWD)
-
 build:
 	docker build --tag $(IMAGE_NAME):$(VERSION) --file dockerfiles/app/Dockerfile.production  "."
 
