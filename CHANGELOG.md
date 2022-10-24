@@ -1,6 +1,7 @@
 # Next version
 + Remove frontend stuffes
 + Add production deployment note
++ Add others CIs / CDs
 
 ## 0.2.0
 + Add Docker production
