@@ -20,7 +20,6 @@ blocks:
       jobs:
         - name: "Run PHPUnit"
           commands:
-            - docker -v
             - checkout
             - sed -i -e 's,/data,/root/resumecv-backend,g' sonar-project.properties
             - composer install
