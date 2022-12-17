@@ -4,8 +4,16 @@ namespace App\Http\Controllers\Api\V1;
 
 class VersionsController
 {
-    public function index()
+    /**
+     *
+     * Return the current version of the APP
+     *
+     * @return string
+     */
+    public function index(): array|string
     {
-        return "ok";
+        return [
+            'version' => env('APP_VERSION', '0.0.0')
+        ];
     }
 }

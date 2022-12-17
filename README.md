@@ -9,6 +9,10 @@ Resume CV Backend
 | CircleCI     | [![CircleCI](https://circleci.com/gh/sineverba/resumecv-backend/tree/develop.svg?style=svg)](https://circleci.com/gh/sineverba/resumecv-backend/tree/develop)                                                        |
 | SonarCloud   | [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=sineverba_resumecv-backend&metric=alert_status)](https://sonarcloud.io/dashboard?id=sineverba_resumecv-backend)                     |
 
+## First setup
+1. `$ composer install`
+2. `$ cp .env.example .env`
+
 ### Production deploy
 
 1. Add `Semaphore CI` key in `authorized_keys` file on VPS
