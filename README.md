@@ -16,7 +16,7 @@ Resume CV Backend
 ## Upgrade
 `composer update`
 
-### Production deploy
+### Production deploy (see production folder)
 
 1. Add `Semaphore CI` key in `authorized_keys` file on VPS
 2. Generate a `APP_KEY`: `php artisan key:generate --show`

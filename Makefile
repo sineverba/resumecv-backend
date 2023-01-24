@@ -19,7 +19,7 @@ preparemulti:
 	docker buildx inspect --bootstrap --builder multiarch
 
 multi:
-	docker buildx build --platform linux/arm64/v8,linux/amd64,linux/arm/v6,linux/arm/v7 --tag $(IMAGE_NAME):$(APP_VERSION) --tag $(IMAGE_NAME):latest --file dockerfiles/app/Dockerfile.production  "."
+	docker buildx build --platform linux/arm64/v8,linux/amd64,linux/arm/v6,linux/arm/v7 --tag $(IMAGE_NAME):$(APP_VERSION) --tag $(IMAGE_NAME):latest --push --file dockerfiles/app/Dockerfile.production  "."
 
 build:
 	docker build --tag $(IMAGE_NAME):$(APP_VERSION) --file dockerfiles/app/Dockerfile.production  "."
@@ -28,7 +28,7 @@ push:
 	docker push $(IMAGE_NAME):$(APP_VERSION)
 
 spin:
-	docker run -d --rm --name $(CONTAINER_NAME) -p 8001:80 $(IMAGE_NAME):$(APP_VERSION)
+	docker run --rm --name $(CONTAINER_NAME) -p 8001:80 $(IMAGE_NAME):$(APP_VERSION)
 
 stop:
 	docker container stop $(CONTAINER_NAME)
