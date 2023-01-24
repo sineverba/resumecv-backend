@@ -30,7 +30,7 @@ blocks:
             - apt-get update -y && apt-get install wget unzip -y
             - wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.8.0.2856-linux.zip
             - unzip sonar-scanner-cli-4.8.0.2856-linux.zip
-            - sonar-scanner-4.7.0.2747-linux/bin/sonar-scanner -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_AUTH_TOKEN -Dsonar.projectKey=sineverba_resumecv-backend -Dsonar.organization=sineverba
+            - sonar-scanner-4.8.0.2856-linux/bin/sonar-scanner -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_AUTH_TOKEN -Dsonar.projectKey=sineverba_resumecv-backend -Dsonar.organization=sineverba
 
 promotions:
   - name: Build and production
