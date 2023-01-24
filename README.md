@@ -13,6 +13,9 @@ Resume CV Backend
 1. `$ composer install`
 2. `$ cp .env.example .env`
 
+## Upgrade
+`composer update`
+
 ### Production deploy
 
 1. Add `Semaphore CI` key in `authorized_keys` file on VPS
