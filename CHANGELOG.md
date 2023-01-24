@@ -5,6 +5,7 @@
 + Add `versions` route
 + Complete `versions` route
 + Upgrade dependencies
++ Fix PHP CS Fixer
 
 ## 0.2.0
 + Add Docker production

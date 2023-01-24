@@ -47,7 +47,7 @@
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
         ],
-        "check-style": "php-cs-fixer fix app --dry-run --rules=@PSR2",
+        "check-style": "PHP_CS_FIXER_IGNORE_ENV=1 php-cs-fixer fix app --dry-run --rules=@PSR2",
         "fix-style": "php-cs-fixer fix app --rules=@PSR2",
         "test": "phpunit"
     },
