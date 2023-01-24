@@ -4,6 +4,7 @@
 + Add others CIs / CDs
 + Add `versions` route
 + Complete `versions` route
++ Upgrade dependencies
 
 ## 0.2.0
 + Add Docker production
