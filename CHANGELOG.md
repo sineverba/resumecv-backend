@@ -1,4 +1,7 @@
-# 0.3.0
+# Next version
++ Fix badge
+
+## 0.3.0
 + Remove frontend stuffes
 + Add production deployment note
 + Add others CIs / CDs
