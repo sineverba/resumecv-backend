@@ -7,7 +7,7 @@ COPY --from=composer:2.5.1 /usr/bin/composer /usr/bin/composer
 
 RUN mkdir -p /usr/src/app
 
-COPY . /usr/src/app
+COPY ./ /usr/src/app
 
 WORKDIR /usr/src/app
 
@@ -40,9 +40,9 @@ RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
 RUN docker-php-ext-install mysqli pdo pdo_mysql opcache && docker-php-ext-enable mysqli pdo pdo_mysql
 
-COPY dockerfiles/production/apache/000-default.conf /etc/apache2/sites-available/000-default.conf
-COPY dockerfiles/production/apache/start-apache /usr/local/bin
-COPY dockerfiles/production/app/opcache.ini $PHP_INI_DIR/conf.d/
+COPY dockerfiles/production/build/apache/000-default.conf /etc/apache2/sites-available/000-default.conf
+COPY dockerfiles/production/build/apache/start-apache /usr/local/bin
+COPY dockerfiles/production/build/app/opcache.ini $PHP_INI_DIR/conf.d/
 RUN chmod +x /usr/local/bin/start-apache && a2enmod rewrite
 
 # Copy application source

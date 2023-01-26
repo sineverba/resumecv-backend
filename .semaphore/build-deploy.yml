@@ -50,7 +50,7 @@ blocks:
               --tag $DOCKER_IMAGE:$SEMAPHORE_GIT_TAG_NAME
               --tag $DOCKER_IMAGE:latest
               --push
-              --file dockerfiles/production/Dockerfile "."
+              --file dockerfiles/production/build/Dockerfile "."
 
   - name: "Deploy APP"
     dependencies: ["Build and deploy"]
