@@ -76,7 +76,7 @@ blocks:
             # 4 - Replace the docker-compose with new tag image
             - >-
               ssh -t $VPS01_OCI_USERNAME@$VPS01_OCI_URL -p $VPS01_OCI_PORT
-              "sed -i \"/image\: registry.gitlab.com\/cicdprojects\/resumecv-backend:/c\    image\: registry.gitlab.com\/cicdprojects\/resumecv-backend\:$SEMAPHORE_GIT_TAG_NAME\" $FOLDER_APP/docker-compose.yml && exit"
+              "sed -i \"/image\: registry.gitlab.com\/cicdprojects\/$FOLDER_APP:/c\    image\: registry.gitlab.com\/cicdprojects\/$FOLDER_APP\:$SEMAPHORE_GIT_TAG_NAME\" $FOLDER_APP/docker-compose.yml && exit"
             # 5 - Replace the APP version in env file
             - >-
               ssh -t $VPS01_OCI_USERNAME@$VPS01_OCI_URL -p $VPS01_OCI_PORT
