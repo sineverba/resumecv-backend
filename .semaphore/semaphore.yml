@@ -1,47 +1,43 @@
 version: v1.0
-name: Test
+
+name: Build and deploy
 agent:
   machine:
     type: e1-standard-2
-
-  containers:
-    - name: main
-      image: sineverba/php8xc:1.12.0
+    os_image: ubuntu2004
 
 global_job_config:
   secrets:
     - name: ACCESS_TOKENS
+    - name: VPS
+
   env_vars:
-    - name: SONARSCANNER_VERSION
-      value: 4.8.0.2856
+    - name: DOCKER_IMAGE
+      value: registry.gitlab.com/cicdprojects/resumecv-backend
+    - name: GITLAB_REGISTRY
+      value: registry.gitlab.com
+    - name: BUILDX_VERSION
+      value: 0.10.0
+    - name: BINFMT_VERSION
+      value: qemu-v7.0.0-28
+    - name: FOLDER_APP
+      value: resumecv-backend
 
 blocks:
-  - name: "Unit tests"
-    skip:
-      when: "tag =~ '.*'"
+  - name: "Deploy APP"
     task:
       jobs:
-        - name: "Run PHPUnit"
+        - name: Deploy to VPS
           commands:
-            - checkout
-            - sed -i -e 's,/data,/root/resumecv-backend,g' sonar-project.properties
-            - composer install
-            - cp .env.example .env
-            - php artisan key:generate
-            - ./vendor/bin/phpunit
-            #- PHP_CS_FIXER_IGNORE_ENV=1 vendor/bin/php-cs-fixer fix app --dry-run --rules=@PSR2
-            - apt-get update -y && apt-get install wget unzip -y
-            - wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-$SONARSCANNER_VERSION-linux.zip
-            - unzip sonar-scanner-cli-$SONARSCANNER_VERSION-linux.zip
+            - ssh-keyscan -p $VPS01_OCI_PORT -H $VPS01_OCI_URL >> ~/.ssh/known_hosts
+            - chmod 0600 ~/.ssh/id_semaphore
+            - ssh-add ~/.ssh/id_semaphore
+            # 1 - Stop the container and remove it
             - >-
-              sonar-scanner-$SONARSCANNER_VERSION-linux/bin/sonar-scanner
-              -Dsonar.host.url=https://sonarcloud.io
-              -Dsonar.login=$SONAR_AUTH_TOKEN
-              -Dsonar.projectKey=sineverba_resumecv-backend
-              -Dsonar.organization=sineverba
+              ssh -t $VPS01_OCI_USERNAME@$VPS01_OCI_URL -p $VPS01_OCI_PORT
+              "cd $FOLDER_APP && docker-compose stop && docker container rm $FOLDER_APP && exit"
+            # 2 - Remove all tagged images
+            - >-
+              ssh -t $VPS01_OCI_USERNAME@$VPS01_OCI_URL -p $VPS01_OCI_PORT
+              "docker images | grep $FOLDER_APP | tr -s ' ' | cut -d ' ' -f 2 | xargs -I {} docker rmi $DOCKER_IMAGE:{} && exit"
 
-promotions:
-  - name: Deploy
-    pipeline_file: build-deploy.yml
-    auto_promote:
-      when: "result = 'passed' and tag =~ '.*'"
