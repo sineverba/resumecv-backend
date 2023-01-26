@@ -1,5 +1,6 @@
 # Next version
 + Fix badge
++ Add Repository + Fix Sonar issues
 
 ## 0.3.0
 + Remove frontend stuffes
