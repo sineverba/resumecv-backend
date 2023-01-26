@@ -31,7 +31,7 @@ blocks:
             - ssh-add ~/.ssh/id_semaphore
             - >-
               ssh -t $VPS01_OCI_USERNAME@$VPS01_OCI_URL -p $VPS01_OCI_PORT
-              "sed -i \"/image: registry.gitlab.com/cicdprojects/resumecv-backend:/c\image: registry.gitlab.com/cicdprojects/resumecv-backend:9.8.7\" $FOLDER_APP/backup && exit"
+              "sed -i \"/image\: registry.gitlab.com\/cicdprojects\/resumecv-backend:/c\image\: registry.gitlab.com\/cicdprojects\/resumecv-backend\:9.8.7\" $FOLDER_APP/backup && exit"
 
 promotions:
   - name: Deploy
