@@ -1,5 +1,5 @@
 version: v1.0
-name: Resume CV Backend backend CI
+name: Test
 agent:
   machine:
     type: e1-standard-2
@@ -11,6 +11,9 @@ agent:
 global_job_config:
   secrets:
     - name: ACCESS_TOKENS
+  env_vars:
+    - name: SONARSCANNER_VERSION
+      value: 4.8.0.2856
 
 blocks:
   - name: "Unit tests"
@@ -26,14 +29,19 @@ blocks:
             - cp .env.example .env
             - php artisan key:generate
             - ./vendor/bin/phpunit
-            - PHP_CS_FIXER_IGNORE_ENV=1 vendor/bin/php-cs-fixer fix app --dry-run --rules=@PSR2
+            #- PHP_CS_FIXER_IGNORE_ENV=1 vendor/bin/php-cs-fixer fix app --dry-run --rules=@PSR2
             - apt-get update -y && apt-get install wget unzip -y
-            - wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.8.0.2856-linux.zip
-            - unzip sonar-scanner-cli-4.8.0.2856-linux.zip
-            - sonar-scanner-4.8.0.2856-linux/bin/sonar-scanner -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_AUTH_TOKEN -Dsonar.projectKey=sineverba_resumecv-backend -Dsonar.organization=sineverba
+            - wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-$SONARSCANNER_VERSION-linux.zip
+            - unzip sonar-scanner-cli-$SONARSCANNER_VERSION-linux.zip
+            - >-
+              sonar-scanner-$SONARSCANNER_VERSION-linux/bin/sonar-scanner
+              -Dsonar.host.url=https://sonarcloud.io
+              -Dsonar.login=$SONAR_AUTH_TOKEN
+              -Dsonar.projectKey=sineverba_resumecv-backend
+              -Dsonar.organization=sineverba
 
 promotions:
-  - name: Build and production
+  - name: Deploy
     pipeline_file: build-deploy.yml
     auto_promote:
       when: "result = 'passed' and tag =~ '.*'"

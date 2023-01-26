@@ -6,8 +6,8 @@ services:
                 user: user
                 uid: 1000
             context: ./
-            dockerfile: ./dockerfiles/app/Dockerfile
-        image: sineverba/resumecv-backend-app:0.3.0-dev
+            dockerfile: dockerfiles/development/app/Dockerfile
+        image: sineverba/resumecv-backend-app:1.0.0
         container_name: resumecv-backend-app
         working_dir: /var/www/
         volumes:
@@ -22,7 +22,7 @@ services:
             - "8000:80"
         volumes:
             - ./:/var/www
-            - ./dockerfiles/nginx:/etc/nginx/conf.d/
+            - ./dockerfiles/development/nginx:/etc/nginx/conf.d/
         networks:
             - resumecv-backend
 

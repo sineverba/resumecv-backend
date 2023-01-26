@@ -1,4 +1,9 @@
-# 0.3.0
+# 0.4.0
++ Fix badge
++ Add Repository + Fix Sonar issues
++ Reorganize Docker folders
+
+## 0.3.0
 + Remove frontend stuffes
 + Add production deployment note
 + Add others CIs / CDs
