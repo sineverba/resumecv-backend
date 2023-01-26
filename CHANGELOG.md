@@ -1,4 +1,4 @@
-# Next version
+# 0.4.0
 + Fix badge
 + Add Repository + Fix Sonar issues
 + Reorganize Docker folders
