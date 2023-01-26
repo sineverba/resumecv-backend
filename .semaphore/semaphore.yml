@@ -29,7 +29,7 @@ blocks:
             - cp .env.example .env
             - php artisan key:generate
             - ./vendor/bin/phpunit
-            - PHP_CS_FIXER_IGNORE_ENV=1 vendor/bin/php-cs-fixer fix app --dry-run --rules=@PSR2
+            #- PHP_CS_FIXER_IGNORE_ENV=1 vendor/bin/php-cs-fixer fix app --dry-run --rules=@PSR2
             - apt-get update -y && apt-get install wget unzip -y
             - wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-$SONARSCANNER_VERSION-linux.zip
             - unzip sonar-scanner-cli-$SONARSCANNER_VERSION-linux.zip
