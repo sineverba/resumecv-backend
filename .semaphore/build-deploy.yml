@@ -61,21 +61,27 @@ blocks:
             - ssh-keyscan -p $VPS01_OCI_PORT -H $VPS01_OCI_URL >> ~/.ssh/known_hosts
             - chmod 0600 ~/.ssh/id_semaphore
             - ssh-add ~/.ssh/id_semaphore
-            - >-
-              ssh -t $VPS01_OCI_USERNAME@$VPS01_OCI_URL -p $VPS01_OCI_PORT
-              "cd $FOLDER_APP && docker-compose stop && exit"
-            - >-
-              ssh -t $VPS01_OCI_USERNAME@$VPS01_OCI_URL -p $VPS01_OCI_PORT
-              "docker container rm $FOLDER_APP && docker image rm $DOCKER_IMAGE:latest && exit"
+            # 1 - Pull the image
             - >-
               ssh -t $VPS01_OCI_USERNAME@$VPS01_OCI_URL -p $VPS01_OCI_PORT
               "docker pull $DOCKER_IMAGE:$SEMAPHORE_GIT_TAG_NAME && exit"
+            # 2 - Stop the container
             - >-
               ssh -t $VPS01_OCI_USERNAME@$VPS01_OCI_URL -p $VPS01_OCI_PORT
-              "sed -i \"/image: registry.gitlab.com/cicdprojects/resumecv-backend:/c\image: registry.gitlab.com/cicdprojects/resumecv-backend:$SEMAPHORE_GIT_TAG_NAME\" $FOLDER_APP/docker-compose.yml && exit"
+              "cd $FOLDER_APP && docker-compose stop && exit"
+            # 3 - Remove the container and the image
+            - >-
+              ssh -t $VPS01_OCI_USERNAME@$VPS01_OCI_URL -p $VPS01_OCI_PORT
+              "cd $FOLDER_APP && current_tag=$(sed -n 4p docker-compose.yml | tail -c 6) && docker container rm $FOLDER_APP && docker image rm $DOCKER_IMAGE:$current_tag && exit"
+            # 4 - Replace the docker-compose with new tag image
+            - >-
+            - ssh -t $VPS01_OCI_USERNAME@$VPS01_OCI_URL -p $VPS01_OCI_PORT
+              "sed -i \"/image\: registry.gitlab.com\/cicdprojects\/resumecv-backend:/c\    image\: registry.gitlab.com\/cicdprojects\/resumecv-backend\:$SEMAPHORE_GIT_TAG_NAME\" $FOLDER_APP/docker-compose.yml && exit"
+            # 5 - Replace the APP version in env file
             - >-
               ssh -t $VPS01_OCI_USERNAME@$VPS01_OCI_URL -p $VPS01_OCI_PORT
               "sed -i \"/APP_VERSION=/c\APP_VERSION=$SEMAPHORE_GIT_TAG_NAME\" $FOLDER_APP/.env && exit"
+            # 6 - Restart the service
             - >-
               ssh -t $VPS01_OCI_USERNAME@$VPS01_OCI_URL -p $VPS01_OCI_PORT
               "cd $FOLDER_APP && docker-compose up -d && exit"

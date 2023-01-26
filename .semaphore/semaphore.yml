@@ -1,40 +1,38 @@
 version: v1.0
-name: Test
+
+name: Build and deploy
 agent:
   machine:
     type: e1-standard-2
-
-  #containers:
-  #  - name: main
-  #    image: sineverba/php8xc:1.12.0
+    os_image: ubuntu2004
 
 global_job_config:
   secrets:
     - name: ACCESS_TOKENS
     - name: VPS
+
   env_vars:
-    - name: SONARSCANNER_VERSION
-      value: 4.8.0.2856
+    - name: DOCKER_IMAGE
+      value: registry.gitlab.com/cicdprojects/resumecv-backend
+    - name: GITLAB_REGISTRY
+      value: registry.gitlab.com
+    - name: BUILDX_VERSION
+      value: 0.10.0
+    - name: BINFMT_VERSION
+      value: qemu-v7.0.0-28
     - name: FOLDER_APP
       value: resumecv-backend
 
 blocks:
-  - name: "Unit tests"
-    skip:
-      when: "tag =~ '.*'"
+  - name: "Deploy APP"
     task:
       jobs:
-        - name: Test VPS
+        - name: Deploy to VPS
           commands:
             - ssh-keyscan -p $VPS01_OCI_PORT -H $VPS01_OCI_URL >> ~/.ssh/known_hosts
             - chmod 0600 ~/.ssh/id_semaphore
             - ssh-add ~/.ssh/id_semaphore
+            # 3 - Remove the container and the image
             - >-
               ssh -t $VPS01_OCI_USERNAME@$VPS01_OCI_URL -p $VPS01_OCI_PORT
-              "sed -i \"/image\: registry.gitlab.com\/cicdprojects\/resumecv-backend:/c\    image\: registry.gitlab.com\/cicdprojects\/resumecv-backend\:9.8.7\" $FOLDER_APP/backup && exit"
-
-promotions:
-  - name: Deploy
-    pipeline_file: build-deploy.yml
-    auto_promote:
-      when: "result = 'passed' and tag =~ '.*'"
+              "cd $FOLDER_APP && current_tag=$(sed -n 4p docker-compose.yml | tail -c 6) && docker-compose stop && docker container rm $FOLDER_APP && docker image rm $DOCKER_IMAGE:$current_tag && exit"
