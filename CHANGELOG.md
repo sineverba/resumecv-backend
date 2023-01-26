@@ -1,6 +1,7 @@
 # Next version
 + Fix badge
 + Add Repository + Fix Sonar issues
++ Reorganize Docker folders
 
 ## 0.3.0
 + Remove frontend stuffes

@@ -19,10 +19,15 @@ preparemulti:
 	docker buildx inspect --bootstrap --builder multiarch
 
 multi:
-	docker buildx build --platform linux/arm64/v8,linux/amd64,linux/arm/v6,linux/arm/v7 --tag $(IMAGE_NAME):$(APP_VERSION) --tag $(IMAGE_NAME):latest --push --file dockerfiles/app/Dockerfile.production  "."
+	docker buildx build \
+		--platform linux/arm64/v8,linux/amd64,linux/arm/v6,linux/arm/v7 \
+		--tag $(IMAGE_NAME):$(APP_VERSION) \
+		--tag $(IMAGE_NAME):latest \
+		--push \
+		--file dockerfiles/production/Dockerfile  "."
 
 build:
-	docker build --tag $(IMAGE_NAME):$(APP_VERSION) --file dockerfiles/app/Dockerfile.production  "."
+	docker build --tag $(IMAGE_NAME):$(APP_VERSION) --file dockerfiles/production/Dockerfile  "."
 
 push:
 	docker push $(IMAGE_NAME):$(APP_VERSION)

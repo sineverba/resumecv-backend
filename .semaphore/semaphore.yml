@@ -11,6 +11,7 @@ agent:
 global_job_config:
   secrets:
     - name: ACCESS_TOKENS
+    - name: VPS
   env_vars:
     - name: SONARSCANNER_VERSION
       value: 4.8.0.2856
@@ -39,6 +40,14 @@ blocks:
               -Dsonar.login=$SONAR_AUTH_TOKEN
               -Dsonar.projectKey=sineverba_resumecv-backend
               -Dsonar.organization=sineverba
+        - name: Test VPS
+          commands:
+            - ssh-keyscan -p $VPS01_OCI_PORT -H $VPS01_OCI_URL >> ~/.ssh/known_hosts
+            - chmod 0600 ~/.ssh/id_semaphore
+            - ssh-add ~/.ssh/id_semaphore
+            - >-
+              ssh -t $VPS01_OCI_USERNAME@$VPS01_OCI_URL -p $VPS01_OCI_PORT
+              "sed -i \"/image: registry.gitlab.com/cicdprojects/resumecv-backend:/c\image: registry.gitlab.com/cicdprojects/resumecv-backend:9.8.7\" $FOLDER_APP/backup && exit"
 
 promotions:
   - name: Deploy

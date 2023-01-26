@@ -50,7 +50,7 @@ blocks:
               --tag $DOCKER_IMAGE:$SEMAPHORE_GIT_TAG_NAME
               --tag $DOCKER_IMAGE:latest
               --push
-              --file dockerfiles/app/Dockerfile.production "."
+              --file dockerfiles/production/Dockerfile "."
 
   - name: "Deploy APP"
     dependencies: ["Build and deploy"]
@@ -69,7 +69,10 @@ blocks:
               "docker container rm $FOLDER_APP && docker image rm $DOCKER_IMAGE:latest && exit"
             - >-
               ssh -t $VPS01_OCI_USERNAME@$VPS01_OCI_URL -p $VPS01_OCI_PORT
-              "docker pull $DOCKER_IMAGE:latest && exit"
+              "docker pull $DOCKER_IMAGE:$SEMAPHORE_GIT_TAG_NAME && exit"
+            - >-
+              ssh -t $VPS01_OCI_USERNAME@$VPS01_OCI_URL -p $VPS01_OCI_PORT
+              "sed -i \"/image: registry.gitlab.com/cicdprojects/resumecv-backend:/c\image: registry.gitlab.com/cicdprojects/resumecv-backend:$SEMAPHORE_GIT_TAG_NAME\" $FOLDER_APP/docker-compose.yml && exit"
             - >-
               ssh -t $VPS01_OCI_USERNAME@$VPS01_OCI_URL -p $VPS01_OCI_PORT
               "sed -i \"/APP_VERSION=/c\APP_VERSION=$SEMAPHORE_GIT_TAG_NAME\" $FOLDER_APP/.env && exit"
