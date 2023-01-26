@@ -1,4 +1,7 @@
-# 0.4.0
+# 0.4.1
++ Fix Semaphore
+
+## 0.4.0
 + Fix badge
 + Add Repository + Fix Sonar issues
 + Reorganize Docker folders
