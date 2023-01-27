@@ -6,9 +6,9 @@ services:
                 user: user
                 uid: 1000
             context: ./
-            dockerfile: dockerfiles/development/app/Dockerfile
+            dockerfile: dockerfiles/development/docker/Dockerfile
         image: sineverba/resumecv-backend-app:1.0.0
-        container_name: resumecv-backend-app
+        container_name: resumecv-backend-docker
         working_dir: /var/www/
         volumes:
             - ./:/var/www

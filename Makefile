@@ -24,10 +24,10 @@ multi:
 		--tag $(IMAGE_NAME):$(APP_VERSION) \
 		--tag $(IMAGE_NAME):latest \
 		--push \
-		--file dockerfiles/production/build/Dockerfile "."
+		--file dockerfiles/production/build/docker/Dockerfile "."
 
 build:
-	docker build --tag $(IMAGE_NAME):$(APP_VERSION) --file dockerfiles/production/build/Dockerfile "."
+	docker build --tag $(IMAGE_NAME):$(APP_VERSION) --file dockerfiles/production/build/docker/Dockerfile "."
 
 push:
 	docker push $(IMAGE_NAME):$(APP_VERSION)
