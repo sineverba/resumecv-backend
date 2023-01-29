@@ -14,6 +14,8 @@ global_job_config:
   env_vars:
     - name: SONARSCANNER_VERSION
       value: 4.8.0.2856
+    - name: PHP8XC_VERSION
+      value: 1.12.0
 
 blocks:
   - name: "Unit tests"

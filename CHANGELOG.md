@@ -1,6 +1,7 @@
 # Next version
 + Upgrade dependencies + refactor Semaphore
 + Refactor Semaphore + Docker + Add index repository
++ Test Semaphore + add seeder
 
 ## 0.4.1
 + Fix Semaphore
