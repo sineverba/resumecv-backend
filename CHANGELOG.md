@@ -1,4 +1,4 @@
-# Next version
+# 0.5.0
 + Upgrade dependencies + refactor Semaphore
 + Refactor Semaphore + Docker + Add index repository
 + Test Semaphore + add seeder
