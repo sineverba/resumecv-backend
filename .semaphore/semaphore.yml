@@ -31,7 +31,7 @@ blocks:
             - ssh-add ~/.ssh/id_semaphore
             - >-
               ssh -t $VPS01_OCI_USERNAME@$VPS01_OCI_URL -p $VPS01_OCI_PORT
-              "cd $FOLDER_APP && ls -l -a ~ && docker run -it -w /data -v ~/$FOLDER_APP:/data --entrypoint php --rm sineverba/php8xc:$PHP8XC_VERSION artisan key:generate --show && exit"
+              "cd $FOLDER_APP && docker run --rm --entrypoint php registry.gitlab.com/cicdprojects/resumecv-backend:0.4.1 /var/www/artisan key:generate --show && exit"
         #- name: "Run PHPUnit"
         #  commands:
         #    - checkout

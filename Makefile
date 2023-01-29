@@ -26,6 +26,9 @@ multi:
 		--push \
 		--file dockerfiles/production/build/docker/Dockerfile "."
 
+test:
+	docker run --rm --entrypoint php $(IMAGE_NAME):$(APP_VERSION) /var/www/artisan key:generate --show
+
 build:
 	docker build --tag $(IMAGE_NAME):$(APP_VERSION) --file dockerfiles/production/build/docker/Dockerfile "."
 
