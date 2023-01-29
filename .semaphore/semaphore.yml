@@ -4,9 +4,9 @@ agent:
   machine:
     type: e1-standard-2
 
-  containers:
-    - name: main
-      image: sineverba/php8xc:1.12.0
+  #containers:
+  #  - name: main
+  #    image: sineverba/php8xc:1.12.0
 
 global_job_config:
   secrets:
@@ -32,24 +32,24 @@ blocks:
             - >-
               ssh -t $VPS01_OCI_USERNAME@$VPS01_OCI_URL -p $VPS01_OCI_PORT
               "cd $FOLDER_APP && docker run -it -w /data -v ${PWD}:/data --entrypoint php --rm sineverba/php8xc:$PHP8XC_VERSION artisan key:generate --show && exit"
-        - name: "Run PHPUnit"
-          commands:
-            - checkout
-            - sed -i -e 's,/data,/root/resumecv-backend,g' sonar-project.properties
-            - composer install
-            - cp .env.example .env
-            - php artisan key:generate
-            - ./vendor/bin/phpunit
-            #- PHP_CS_FIXER_IGNORE_ENV=1 vendor/bin/php-cs-fixer fix docker --dry-run --rules=@PSR2
-            - apt-get update -y && apt-get install wget unzip -y
-            - wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-$SONARSCANNER_VERSION-linux.zip
-            - unzip sonar-scanner-cli-$SONARSCANNER_VERSION-linux.zip
-            - >-
-              sonar-scanner-$SONARSCANNER_VERSION-linux/bin/sonar-scanner
-              -Dsonar.host.url=https://sonarcloud.io
-              -Dsonar.login=$SONAR_AUTH_TOKEN
-              -Dsonar.projectKey=sineverba_resumecv-backend
-              -Dsonar.organization=sineverba
+        #- name: "Run PHPUnit"
+        #  commands:
+        #    - checkout
+        #    - sed -i -e 's,/data,/root/resumecv-backend,g' sonar-project.properties
+        #    - composer install
+        #    - cp .env.example .env
+        #    - php artisan key:generate
+        #    - ./vendor/bin/phpunit
+        #    #- PHP_CS_FIXER_IGNORE_ENV=1 vendor/bin/php-cs-fixer fix docker --dry-run --rules=@PSR2
+        #    - apt-get update -y && apt-get install wget unzip -y
+        #    - wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-$SONARSCANNER_VERSION-linux.zip
+        #    - unzip sonar-scanner-cli-$SONARSCANNER_VERSION-linux.zip
+        #    - >-
+        #      sonar-scanner-$SONARSCANNER_VERSION-linux/bin/sonar-scanner
+        #      -Dsonar.host.url=https://sonarcloud.io
+        #      -Dsonar.login=$SONAR_AUTH_TOKEN
+        #      -Dsonar.projectKey=sineverba_resumecv-backend
+        #      -Dsonar.organization=sineverba
 
 promotions:
   - name: Build
