@@ -2,10 +2,13 @@
 
 namespace App\Repositories;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class DatabasesRepository extends Model
 {
+    use HasFactory;
+
     /**
      * The table name.
      * @var string
