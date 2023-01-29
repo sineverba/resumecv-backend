@@ -5,6 +5,7 @@ APP_VERSION=0.4.1-dev
 SONARSCANNER_VERSION=4.8.0
 BUILDX_VERSION=0.10.0
 BINFMT_VERSION=qemu-v7.0.0-28
+PHP8XC_VERSION=1.12.0
 PWD:=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 
 preparemulti:
@@ -28,6 +29,9 @@ multi:
 
 test:
 	docker run --rm --entrypoint php $(IMAGE_NAME):$(APP_VERSION) /var/www/artisan key:generate --show
+
+migrate:
+	docker-compose exec app php artisan migrate
 
 build:
 	docker build --tag $(IMAGE_NAME):$(APP_VERSION) --file dockerfiles/production/build/docker/Dockerfile "."

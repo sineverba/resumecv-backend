@@ -12,6 +12,7 @@ Resume CV Backend
 ## First setup
 1. `$ composer install`
 2. `$ cp .env.example .env`
+3. `$ make migrate`
 
 ## Upgrade
 `composer update`
