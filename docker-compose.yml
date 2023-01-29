@@ -6,9 +6,9 @@ services:
                 user: user
                 uid: 1000
             context: ./
-            dockerfile: dockerfiles/development/app/Dockerfile
+            dockerfile: dockerfiles/development/docker/Dockerfile
         image: sineverba/resumecv-backend-app:1.0.0
-        container_name: resumecv-backend-app
+        container_name: resumecv-backend-docker
         working_dir: /var/www/
         volumes:
             - ./:/var/www
@@ -25,6 +25,28 @@ services:
             - ./dockerfiles/development/nginx:/etc/nginx/conf.d/
         networks:
             - resumecv-backend
+    db:
+        image: mysql:8.0.31
+        container_name: resumecv-backend-mysql
+        environment:
+            MYSQL_DATABASE: resumecv
+            MYSQL_ROOT_PASSWORD: password
+            MYSQL_PASSWORD: password
+            MYSQL_USER: user
+        ports:
+            - "3306:3306"
+        volumes:
+            - ./dockerfiles/development/mysql:/docker-entrypoint-initdb.d
+        networks:
+            - resumecv-backend
+
+    adminer:
+            image: adminer:4.8.1-standalone
+            container_name: resumecv-backend-adminer
+            ports:
+                - "7000:8080"
+            networks:
+                - resumecv-backend
 
 networks:
     resumecv-backend:

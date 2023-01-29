@@ -1,4 +1,10 @@
-# 0.4.1
+# 0.5.0
++ Upgrade dependencies + refactor Semaphore
++ Refactor Semaphore + Docker + Add index repository
++ Test Semaphore + add seeder
++ Add MySQL configuration
+
+## 0.4.1
 + Fix Semaphore
 
 ## 0.4.0
