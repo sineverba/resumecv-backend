@@ -2,10 +2,10 @@
 
 namespace App\Repositories;
 
+use App\Interfaces\DatabasesInterface;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
-class DatabasesRepository extends Model
+class DatabasesRepository extends Repository implements DatabasesInterface
 {
     use HasFactory;
 
@@ -14,14 +14,4 @@ class DatabasesRepository extends Model
      * @var string
      */
     protected $table = "databases";
-
-    /**
-     * Return all data.
-     *
-     * @return mixed
-     */
-    public function index()
-    {
-        return $this->get();
-    }
 }
