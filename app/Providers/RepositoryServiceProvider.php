@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Interfaces\DatabasesInterface;
+use App\Repositories\DatabasesRepository;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider

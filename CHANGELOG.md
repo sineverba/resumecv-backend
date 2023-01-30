@@ -1,4 +1,8 @@
-# 0.5.0
+# 0.6.0
++ Add gateway
++ Add index controller
+
+## 0.5.0
 + Upgrade dependencies + refactor Semaphore
 + Refactor Semaphore + Docker + Add index repository
 + Test Semaphore + add seeder
