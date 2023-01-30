@@ -15,3 +15,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/versions', 'App\Http\Controllers\Api\V1\VersionsController@index')->name('versions_index');
+// Databases
+Route::get('/databases', 'App\Http\Controllers\Api\V1\DatabasesController@index')->name('databases_index');

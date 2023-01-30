@@ -2,7 +2,6 @@
 
 namespace Tests\Feature\Controllers;
 
-use Illuminate\Support\Facades\Route;
 use Tests\TestCase;
 
 class VersionsControllerTest extends TestCase

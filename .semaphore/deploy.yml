@@ -56,6 +56,6 @@ blocks:
               ssh -t $VPS01_OCI_USERNAME@$VPS01_OCI_URL -p $VPS01_OCI_PORT
               "cd $FOLDER_APP && docker-compose up -d && exit"
             # 7 - Migrate (TBD)
-            #- >-
-            #  ssh -t $VPS01_OCI_USERNAME@$VPS01_OCI_URL -p $VPS01_OCI_PORT
-            #  "cd $FOLDER_APP && docker run --rm --entrypoint php $DOCKER_IMAGE:$SEMAPHORE_GIT_TAG_NAME /var/www/artisan key:generate --show && exit"
+            - >-
+              ssh -t $VPS01_OCI_USERNAME@$VPS01_OCI_URL -p $VPS01_OCI_PORT
+              "cd $FOLDER_APP && docker-compose exec $FOLDER_APP php /var/www/artisan migrate --force && exit"
