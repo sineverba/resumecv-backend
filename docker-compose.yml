@@ -8,7 +8,7 @@ services:
             context: ./
             dockerfile: dockerfiles/development/docker/Dockerfile
         image: sineverba/resumecv-backend-app:1.0.0
-        container_name: resumecv-backend-docker
+        container_name: resumecv-backend-app
         working_dir: /var/www/
         volumes:
             - ./:/var/www
@@ -26,7 +26,7 @@ services:
         networks:
             - resumecv-backend
     db:
-        image: mysql:8.0.31
+        image: mysql:8.0.32
         container_name: resumecv-backend-mysql
         environment:
             MYSQL_DATABASE: resumecv
