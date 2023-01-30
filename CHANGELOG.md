@@ -1,4 +1,4 @@
-# Next version
+# 0.6.0
 + Add gateway
 + Add index controller
 
