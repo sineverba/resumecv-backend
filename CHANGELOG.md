@@ -1,5 +1,6 @@
 # Next version
 + Add gateway
++ Add index controller
 
 ## 0.5.0
 + Upgrade dependencies + refactor Semaphore
