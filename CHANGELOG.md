@@ -1,4 +1,7 @@
-# 0.6.0
+# Next version
++ Add frameworks (migration, repository, gateway and controller)
+
+## 0.6.0
 + Add gateway
 + Add index controller
 

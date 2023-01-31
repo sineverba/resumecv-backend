@@ -7,12 +7,12 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-class DatabasesGatewayTest extends TestCase
+class FrameworksGatewayTest extends TestCase
 {
     use DatabaseMigrations;
     use RefreshDatabase;
 
-    private $gateway = "App\Gateways\DatabasesGateway";
+    private $gateway = "App\Gateways\FrameworksGateway";
 
     private function getGateway(): string
     {
