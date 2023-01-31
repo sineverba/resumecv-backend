@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Repositories\DatabasesRepository;
+use App\Repositories\FrameworksRepository;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -15,5 +16,6 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         DatabasesRepository::factory()->create();
+        FrameworksRepository::factory()->create();
     }
 }
