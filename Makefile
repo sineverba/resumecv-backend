@@ -1,11 +1,12 @@
 include .env
 IMAGE_NAME=registry.gitlab.com/cicdprojects/resumecv-backend
 CONTAINER_NAME=resumecv-backend
-APP_VERSION=0.6.0-dev
+APP_VERSION=0.7.0-dev
 SONARSCANNER_VERSION=4.8.0
-BUILDX_VERSION=0.10.0
+BUILDX_VERSION=0.10.1
 BINFMT_VERSION=qemu-v7.0.0-28
 PHP8XC_VERSION=1.12.0
+PHP_VERSION=8.2.1
 PWD:=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 
 preparemulti:
@@ -28,6 +29,7 @@ multi:
 		--file dockerfiles/production/build/docker/Dockerfile "."
 
 test:
+	docker run --rm --entrypoint php $(IMAGE_NAME):$(APP_VERSION) -v | grep $(PHP_VERSION)
 	docker run --rm --entrypoint php $(IMAGE_NAME):$(APP_VERSION) /var/www/artisan key:generate --show
 
 migrate:
