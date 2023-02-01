@@ -1,4 +1,7 @@
-# 0.7.0
+# Next version
++ Upgrade dependencies
+
+## 0.7.0
 + Add frameworks (migration, repository, gateway and controller)
 
 ## 0.6.0
