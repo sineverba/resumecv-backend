@@ -3,7 +3,7 @@ IMAGE_NAME=registry.gitlab.com/cicdprojects/resumecv-backend
 CONTAINER_NAME=resumecv-backend
 APP_VERSION=0.7.0-dev
 SONARSCANNER_VERSION=4.8.0
-BUILDX_VERSION=0.10.1
+BUILDX_VERSION=0.10.2
 BINFMT_VERSION=qemu-v7.0.0-28
 PHP8XC_VERSION=1.12.0
 PHP_VERSION=8.2.1
@@ -24,7 +24,6 @@ multi:
 	docker buildx build \
 		--platform linux/arm64/v8,linux/amd64,linux/arm/v6,linux/arm/v7 \
 		--tag $(IMAGE_NAME):$(APP_VERSION) \
-		--tag $(IMAGE_NAME):latest \
 		--push \
 		--file dockerfiles/production/build/docker/Dockerfile "."
 

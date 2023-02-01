@@ -15,10 +15,6 @@ global_job_config:
       value: registry.gitlab.com/cicdprojects/resumecv-backend
     - name: GITLAB_REGISTRY
       value: registry.gitlab.com
-    - name: BUILDX_VERSION
-      value: 0.10.1
-    - name: BINFMT_VERSION
-      value: qemu-v7.0.0-28
     - name: FOLDER_APP
       value: resumecv-backend
 
