@@ -38,6 +38,27 @@
                     }
                 }
             }
+        },
+        "/api/v1/frameworks": {
+            "get": {
+                "tags": [
+                    "Frameworks"
+                ],
+                "summary": "Return list of frameworks used by developer",
+                "operationId": "cdbb25555cf599fd086077ed6b430d34",
+                "responses": {
+                    "200": {
+                        "description": "List of frameworks used by developer",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/FrameworksSchema"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -65,6 +86,67 @@
                                     "description": "Suggested order of visualization",
                                     "type": "number",
                                     "example": "1"
+                                },
+                                "use_percentage": {
+                                    "description": "Percentage of time of use",
+                                    "type": "number",
+                                    "example": "20"
+                                },
+                                "created_at": {
+                                    "description": "Date of creation",
+                                    "type": "string",
+                                    "example": "2023-01-29"
+                                },
+                                "updated_at": {
+                                    "description": "Date of update",
+                                    "type": "string",
+                                    "example": "2023-01-29"
+                                },
+                                "deleted_at": {
+                                    "description": "Date of deletion",
+                                    "type": "string",
+                                    "example": "2023-01-29"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "FrameworksSchema": {
+                "title": "Frameworks",
+                "description": "Frameworks model",
+                "properties": {
+                    "data": {
+                        "description": "List of frameworks",
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "id": {
+                                    "description": "ID of the framework",
+                                    "type": "number",
+                                    "example": 1
+                                },
+                                "name": {
+                                    "description": "Name of the framework",
+                                    "type": "string",
+                                    "example": "MySQL"
+                                },
+                                "view_order": {
+                                    "description": "Suggested order of visualization",
+                                    "type": "number",
+                                    "example": "1"
+                                },
+                                "knowledge_percentage": {
+                                    "description": "Percentage of knowledge",
+                                    "type": "number",
+                                    "example": "20"
+                                },
+                                "color": {
+                                    "description": "Suggested color",
+                                    "type": "string",
+                                    "example": "#FFFFFF"
                                 },
                                 "created_at": {
                                     "description": "Date of creation",

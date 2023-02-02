@@ -1,4 +1,7 @@
-# 0.8.1
+# Next version
++ Complete Swagger
+
+## 0.8.1
 + Fix https Swagger
 
 ## 0.8.0

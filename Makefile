@@ -37,6 +37,9 @@ migrate:
 swagger:
 	docker-compose exec app php artisan l5-swagger:generate
 
+fixswagger:
+	sudo chown -R sineverba:sineverba resources/
+
 build:
 	docker build --tag $(IMAGE_NAME):$(APP_VERSION) --file dockerfiles/production/build/docker/Dockerfile "."
 
