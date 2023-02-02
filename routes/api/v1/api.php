@@ -19,3 +19,7 @@ Route::get('/versions', 'App\Http\Controllers\Api\V1\VersionsController@index')-
 Route::get('/databases', 'App\Http\Controllers\Api\V1\DatabasesController@index')->name('databases_index');
 // Frameworks
 Route::get('/frameworks', 'App\Http\Controllers\Api\V1\FrameworksController@index')->name('frameworks_index');
+// Frameworks
+Route::get(
+    '/programming-languages',
+    'App\Http\Controllers\Api\V1\ProgrammingLanguagesController@index')->name('programming_languages_index');

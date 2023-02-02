@@ -7,13 +7,10 @@ SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 
 SET NAMES utf8mb4;
 
-CREATE DATABASE `resumecv` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `resumecv`;
-
 DROP TABLE IF EXISTS `databases`;
 CREATE TABLE `databases` (
                              `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-                             `database_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+                             `database_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
                              `view_order` int NOT NULL,
                              `use_percentage` int NOT NULL,
                              `created_at` timestamp NULL DEFAULT NULL,
@@ -22,6 +19,12 @@ CREATE TABLE `databases` (
                              PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+INSERT INTO `databases` (`id`, `database_name`, `view_order`, `use_percentage`, `created_at`, `updated_at`, `deleted_at`) VALUES
+                                                                                                                              (1,	'Mongo DB',	1,	10,	'2023-01-29 19:23:54',	'2023-01-29 19:23:54',	NULL),
+                                                                                                                              (2,	'MySql',	2,	30,	'2023-01-29 19:24:09',	'2023-01-29 19:24:09',	NULL),
+                                                                                                                              (3,	'Maria DB',	3,	20,	'2023-01-29 19:24:21',	'2023-01-29 19:24:21',	NULL),
+                                                                                                                              (4,	'PostgreSql',	4,	20,	'2023-01-29 19:24:40',	'2023-01-29 19:24:40',	NULL),
+                                                                                                                              (5,	'Oracle',	5,	20,	'2023-01-29 19:24:56',	'2023-01-29 19:24:56',	NULL);
 
 DROP TABLE IF EXISTS `frameworks`;
 CREATE TABLE `frameworks` (
@@ -49,10 +52,32 @@ INSERT INTO `frameworks` (`id`, `name`, `view_order`, `knowledge_percentage`, `c
 DROP TABLE IF EXISTS `migrations`;
 CREATE TABLE `migrations` (
                               `id` int unsigned NOT NULL AUTO_INCREMENT,
-                              `migration` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+                              `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
                               `batch` int NOT NULL,
                               PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
+                                                          (1,	'2023_01_26_091300_create_databases_table',	1),
+                                                          (2,	'2023_01_31_105800_create_frameworks_table',	1),
+                                                          (3,	'2023_02_02_193800_create_programming_languages_table',	1);
 
--- 2023-01-31 11:15:36
+DROP TABLE IF EXISTS `programming_languages`;
+CREATE TABLE `programming_languages` (
+                                         `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+                                         `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+                                         `view_order` int NOT NULL,
+                                         `knowledge_percentage` int NOT NULL,
+                                         `created_at` timestamp NULL DEFAULT NULL,
+                                         `updated_at` timestamp NULL DEFAULT NULL,
+                                         `deleted_at` timestamp NULL DEFAULT NULL,
+                                         PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+INSERT INTO `programming_languages` (`id`, `name`, `view_order`, `knowledge_percentage`, `created_at`, `updated_at`, `deleted_at`) VALUES
+                                                                                                                                       (1,	'PHP',	1,	95,	'2023-02-02 20:06:03',	'2023-02-02 20:06:03',	NULL),
+                                                                                                                                       (2,	'Java',	2,	75,	'2023-02-02 20:06:14',	'2023-02-02 20:06:14',	NULL),
+                                                                                                                                       (3,	'Javascript',	3,	85,	'2023-02-02 20:06:26',	'2023-02-02 20:06:26',	NULL),
+                                                                                                                                       (4,	'Python',	4,	60,	'2023-02-02 20:06:38',	'2023-02-02 20:06:38',	NULL);
+
+-- 2023-02-02 20:07:17

@@ -1,5 +1,6 @@
 # Next version
 + Complete Swagger
++ Add programming language (migration, repository, gateway and controller)
 
 ## 0.8.1
 + Fix https Swagger
