@@ -34,6 +34,9 @@ test:
 migrate:
 	docker-compose exec app php artisan migrate
 
+swagger:
+	docker-compose exec app php artisan l5-swagger:generate
+
 build:
 	docker build --tag $(IMAGE_NAME):$(APP_VERSION) --file dockerfiles/production/build/docker/Dockerfile "."
 

@@ -1,5 +1,6 @@
 # Next version
 + Upgrade dependencies
++ Add Swagger
 
 ## 0.7.0
 + Add frameworks (migration, repository, gateway and controller)
