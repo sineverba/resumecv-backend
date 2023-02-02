@@ -51,7 +51,7 @@ blocks:
             - >-
               ssh -t $VPS01_OCI_USERNAME@$VPS01_OCI_URL -p $VPS01_OCI_PORT
               "cd $FOLDER_APP && docker-compose up -d && exit"
-            # 7 - Migrate (TBD)
+            # 7 - Migrate
             - >-
               ssh -t $VPS01_OCI_USERNAME@$VPS01_OCI_URL -p $VPS01_OCI_PORT
               "cd $FOLDER_APP && docker-compose exec $FOLDER_APP php /var/www/artisan migrate --force && exit"
