@@ -2,6 +2,11 @@ Resume CV Backend
 =================
 
 > Demo backend project for online resume, written with Laravel
+ 
+| Service  | Github link | Demo                                                                                           |
+|----------| ----------- |------------------------------------------------------------------------------------------------|
+| Backend  | [https://github.com/sineverba/resumecv-backend](https://github.com/sineverba/resumecv-backend) | Swagger (TBD) |                                                                                 |
+| Frontend | [https://github.com/sineverba/curriculum-vitae](https://github.com/sineverba/curriculum-vitae) | [Netlify](https://datacv.netlify.app/) - [Vercel](https://curriculum-vitae-ten.vercel.app/) - [Custom](https://cv.k2p.it/) |
 
 | CI - CD      | Status                                                                                                                                                                                                               | 
 |--------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
