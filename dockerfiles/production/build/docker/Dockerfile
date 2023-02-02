@@ -49,4 +49,12 @@ RUN chmod +x /usr/local/bin/start-apache && a2enmod rewrite
 COPY --from=builder /usr/src/app /var/www
 RUN chown -R www-data:www-data /var/www
 
+# Generate swagger
+ARG APP_VERSION=0.8.0
+ARG L5_SWAGGER_CONST_HOST=https://resumecvbackend.k2p.it
+ARG L5_SWAGGER_USE_ABSOLUTE_PATH=false
+RUN rm /var/www/storage/api-docs/api-docs.json && \
+    php /var/www/artisan l5-swagger:generate
+
+
 CMD ["start-apache"]

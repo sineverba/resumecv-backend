@@ -1,0 +1,93 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Resume CV",
+        "description": "Laravel based backend for an online resume",
+        "contact": {
+            "email": "info@example.com"
+        },
+        "license": {
+            "name": "MIT"
+        },
+        "version": "0.4.1"
+    },
+    "servers": [
+        {
+            "url": "https://resumecvbackend.k2p.it",
+            "description": "Api Server"
+        }
+    ],
+    "paths": {
+        "/api/v1/databases": {
+            "get": {
+                "tags": [
+                    "Databases"
+                ],
+                "summary": "Return list of databases used by developer",
+                "operationId": "6e3b2f720b1fc59c2fe77da53d858539",
+                "responses": {
+                    "200": {
+                        "description": "List of databases used by developer",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DatabasesSchema"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "DatabasesSchema": {
+                "title": "Databases",
+                "description": "Databases model",
+                "properties": {
+                    "data": {
+                        "description": "List of databases",
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "id": {
+                                    "description": "ID of the database",
+                                    "type": "number",
+                                    "example": 1
+                                },
+                                "database_name": {
+                                    "description": "Name of the database",
+                                    "type": "string",
+                                    "example": "MySQL"
+                                },
+                                "view_order": {
+                                    "description": "Suggested order of visualization",
+                                    "type": "number",
+                                    "example": "1"
+                                },
+                                "created_at": {
+                                    "description": "Date of creation",
+                                    "type": "string",
+                                    "example": "2023-01-29"
+                                },
+                                "updated_at": {
+                                    "description": "Date of update",
+                                    "type": "string",
+                                    "example": "2023-01-29"
+                                },
+                                "deleted_at": {
+                                    "description": "Date of deletion",
+                                    "type": "string",
+                                    "example": "2023-01-29"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "type": "object"
+            }
+        }
+    }
+}
