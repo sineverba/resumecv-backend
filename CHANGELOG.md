@@ -1,4 +1,4 @@
-# Next version
+# 0.8.0
 + Upgrade dependencies
 + Add Swagger
 
