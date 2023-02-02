@@ -1,4 +1,7 @@
-# 0.8.0
+# 0.8.1
++ Fix https Swagger
+
+## 0.8.0
 + Upgrade dependencies
 + Add Swagger
 
