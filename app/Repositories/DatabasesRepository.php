@@ -25,6 +25,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  *                  property="view_order", description="Suggested order of visualization", type="number", example="1"
  *               ),
  *               @OA\Property(
+ *                  property="use_percentage", description="Percentage of time of use", type="number", example="20"
+ *               ),
+ *               @OA\Property(
  *                  property="created_at", description="Date of creation", type="string", example="2023-01-29"
  *               ),
  *               @OA\Property(

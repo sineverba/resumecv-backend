@@ -1,7 +1,7 @@
 include .env
 IMAGE_NAME=registry.gitlab.com/cicdprojects/resumecv-backend
 CONTAINER_NAME=resumecv-backend
-APP_VERSION=0.8.1-dev
+APP_VERSION=0.9.0-dev
 SONARSCANNER_VERSION=4.8.0
 BUILDX_VERSION=0.10.2
 BINFMT_VERSION=qemu-v7.0.0-28
@@ -36,6 +36,9 @@ migrate:
 
 swagger:
 	docker-compose exec app php artisan l5-swagger:generate
+
+fixswagger:
+	sudo chown -R sineverba:sineverba resources/
 
 build:
 	docker build --tag $(IMAGE_NAME):$(APP_VERSION) --file dockerfiles/production/build/docker/Dockerfile "."

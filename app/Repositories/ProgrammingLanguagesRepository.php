@@ -2,33 +2,30 @@
 
 namespace App\Repositories;
 
-use App\Interfaces\FrameworksInterface;
+use App\Interfaces\ProgrammingLanguagesInterface;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * @OA\Schema(
- *   schema="FrameworksSchema",
- *   title="Frameworks",
- *   description="Frameworks model",
+ *   schema="ProgrammingLanguagesSchema",
+ *   title="Programming Languages",
+ *   description="Programming Languages model",
  *   @OA\Property(
  *          property="data",
- *          description="List of frameworks",
+ *          description="List of programming languages",
  *          type="array",
  *          @OA\Items(
  *               @OA\Property(
- *                  property="id", description="ID of the framework", type="number", example=1
+ *                  property="id", description="ID of the language", type="number", example=1
  *               ),
  *               @OA\Property(
- *                  property="name", description="Name of the framework", type="string", example="MySQL"
+ *                  property="name", description="Name of the language", type="string", example="PHP"
  *               ),
  *               @OA\Property(
  *                  property="view_order", description="Suggested order of visualization", type="number", example="1"
  *               ),
  *               @OA\Property(
- *                  property="knowledge_percentage", description="Percentage of knowledge", type="number", example="20"
- *               ),
- *               @OA\Property(
- *                  property="color", description="Suggested color", type="string", example="#FFFFFF"
+ *                  property="knowledge_percentage", description="Percentage of knowledge", type="number", example="95"
  *               ),
  *               @OA\Property(
  *                  property="created_at", description="Date of creation", type="string", example="2023-01-29"
@@ -45,7 +42,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  *
  */
 
-class FrameworksRepository extends Repository implements FrameworksInterface
+class ProgrammingLanguagesRepository extends Repository implements ProgrammingLanguagesInterface
 {
     use HasFactory;
 
@@ -53,5 +50,5 @@ class FrameworksRepository extends Repository implements FrameworksInterface
      * The table name.
      * @var string
      */
-    protected $table = "frameworks";
+    protected $table = "programming_languages";
 }

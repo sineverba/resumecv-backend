@@ -1,4 +1,8 @@
-# 0.8.1
+# 0.9.0
++ Complete Swagger
++ Add programming language (migration, repository, gateway and controller)
+
+## 0.8.1
 + Fix https Swagger
 
 ## 0.8.0
