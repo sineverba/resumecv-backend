@@ -23,3 +23,5 @@ Route::get('/frameworks', 'App\Http\Controllers\Api\V1\FrameworksController@inde
 Route::get(
     '/programming-languages',
     'App\Http\Controllers\Api\V1\ProgrammingLanguagesController@index')->name('programming_languages_index');
+// Tools and technologies
+Route::get('/tools', 'App\Http\Controllers\Api\V1\ToolsController@index')->name('tools_index');
