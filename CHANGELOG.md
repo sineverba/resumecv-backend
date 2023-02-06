@@ -1,4 +1,7 @@
-# 0.10.0
+# Next version
++ Refactor Semaphore (old docker-compose)
+
+## 0.10.0
 + Add tools and techonologies (migration, repository, gateway and controller)
 
 ## 0.9.0

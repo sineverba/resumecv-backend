@@ -32,10 +32,10 @@ test:
 	docker run --rm --entrypoint php $(IMAGE_NAME):$(APP_VERSION) /var/www/artisan key:generate --show
 
 migrate:
-	docker-compose exec app php artisan migrate
+	docker compose exec app php artisan migrate
 
 swagger:
-	docker-compose exec app php artisan l5-swagger:generate
+	docker compose exec app php artisan l5-swagger:generate
 
 fixswagger:
 	sudo chown -R sineverba:sineverba resources/

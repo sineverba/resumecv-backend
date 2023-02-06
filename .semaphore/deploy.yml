@@ -30,7 +30,7 @@ blocks:
             # 1 - Stop the container and remove it
             - >-
               ssh -t $VPS01_OCI_USERNAME@$VPS01_OCI_URL -p $VPS01_OCI_PORT
-              "cd $FOLDER_APP && docker-compose stop && docker container rm $FOLDER_APP && exit"
+              "cd $FOLDER_APP && docker compose stop && docker container rm $FOLDER_APP && exit"
             # 2 - Remove all tagged images
             - >-
               ssh -t $VPS01_OCI_USERNAME@$VPS01_OCI_URL -p $VPS01_OCI_PORT
@@ -50,8 +50,8 @@ blocks:
             # 6 - Restart the service
             - >-
               ssh -t $VPS01_OCI_USERNAME@$VPS01_OCI_URL -p $VPS01_OCI_PORT
-              "cd $FOLDER_APP && docker-compose up -d && exit"
+              "cd $FOLDER_APP && docker compose up -d && exit"
             # 7 - Migrate
             - >-
               ssh -t $VPS01_OCI_USERNAME@$VPS01_OCI_URL -p $VPS01_OCI_PORT
-              "cd $FOLDER_APP && docker-compose exec $FOLDER_APP php /var/www/artisan migrate --force && exit"
+              "cd $FOLDER_APP && docker compose exec $FOLDER_APP php /var/www/artisan migrate --force && exit"
