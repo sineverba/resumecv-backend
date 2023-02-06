@@ -7,6 +7,9 @@ SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 
 SET NAMES utf8mb4;
 
+CREATE DATABASE `resumecv` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `resumecv`;
+
 DROP TABLE IF EXISTS `databases`;
 CREATE TABLE `databases` (
                              `id` bigint unsigned NOT NULL AUTO_INCREMENT,
@@ -60,7 +63,8 @@ CREATE TABLE `migrations` (
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
                                                           (1,	'2023_01_26_091300_create_databases_table',	1),
                                                           (2,	'2023_01_31_105800_create_frameworks_table',	1),
-                                                          (3,	'2023_02_02_193800_create_programming_languages_table',	1);
+                                                          (3,	'2023_02_02_193800_create_programming_languages_table',	1),
+                                                          (4,	'2023_02_03_142000_create_tools_table',	2);
 
 DROP TABLE IF EXISTS `programming_languages`;
 CREATE TABLE `programming_languages` (
@@ -80,4 +84,30 @@ INSERT INTO `programming_languages` (`id`, `name`, `view_order`, `knowledge_perc
                                                                                                                                        (3,	'Javascript',	3,	85,	'2023-02-02 20:06:26',	'2023-02-02 20:06:26',	NULL),
                                                                                                                                        (4,	'Python',	4,	60,	'2023-02-02 20:06:38',	'2023-02-02 20:06:38',	NULL);
 
--- 2023-02-02 20:07:17
+DROP TABLE IF EXISTS `tools`;
+CREATE TABLE `tools` (
+                         `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+                         `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+                         `view_order` int NOT NULL,
+                         `use_percentage` int NOT NULL,
+                         `created_at` timestamp NULL DEFAULT NULL,
+                         `updated_at` timestamp NULL DEFAULT NULL,
+                         `deleted_at` timestamp NULL DEFAULT NULL,
+                         PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+INSERT INTO `tools` (`id`, `name`, `view_order`, `use_percentage`, `created_at`, `updated_at`, `deleted_at`) VALUES
+                                                                                                                 (1,	'Docker',	1,	90,	'2023-02-03 14:31:21',	'2023-02-03 14:31:21',	NULL),
+                                                                                                                 (2,	'docker-compose',	2,	90,	'2023-02-03 14:31:21',	'2023-02-03 14:31:21',	NULL),
+                                                                                                                 (3,	'Virtual Machines',	3,	20,	'2023-02-03 14:31:21',	'2023-02-03 14:31:21',	NULL),
+                                                                                                                 (4,	'Composer',	4,	20,	'2023-02-03 14:31:21',	'2023-02-03 14:31:21',	NULL),
+                                                                                                                 (5,	'Packagist',	5,	20,	'2023-02-03 14:31:21',	'2023-02-03 14:31:21',	NULL),
+                                                                                                                 (6,	'NPM',	6,	90,	'2023-02-03 14:31:21',	'2023-02-03 14:31:21',	NULL),
+                                                                                                                 (7,	'git',	7,	100,	'2023-02-03 14:31:21',	'2023-02-03 14:31:21',	NULL),
+                                                                                                                 (8,	'API writing',	8,	50,	'2023-02-03 14:31:21',	'2023-02-03 14:31:21',	NULL),
+                                                                                                                 (9,	'API consuming',	9,	100,	'2023-02-03 14:31:21',	'2023-02-03 14:31:21',	NULL),
+                                                                                                                 (10,	'Ansible',	10,	70,	'2023-02-03 14:31:21',	'2023-02-03 14:31:21',	NULL),
+                                                                                                                 (11,	'AWS',	11,	40,	'2023-02-03 14:31:21',	'2023-02-03 14:31:21',	NULL),
+                                                                                                                 (12,	'Postman',	12,	100,	'2023-02-03 14:31:21',	'2023-02-03 14:31:21',	NULL);
+
+-- 2023-02-03 14:37:01

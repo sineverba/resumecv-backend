@@ -9,7 +9,7 @@
         "license": {
             "name": "MIT"
         },
-        "version": "0.4.1"
+        "version": "0.10.0"
     },
     "servers": [
         {
@@ -74,6 +74,27 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/ProgrammingLanguagesSchema"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/tools": {
+            "get": {
+                "tags": [
+                    "ToolsAndTechnologies"
+                ],
+                "summary": "Return list of tools used by developer",
+                "operationId": "847995c94a1ea0325a84691107571a21",
+                "responses": {
+                    "200": {
+                        "description": "List of tools used by developer",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ToolsAndTechnologiesSchema"
                                 }
                             }
                         }
@@ -219,6 +240,57 @@
                                     "description": "Percentage of knowledge",
                                     "type": "number",
                                     "example": "95"
+                                },
+                                "created_at": {
+                                    "description": "Date of creation",
+                                    "type": "string",
+                                    "example": "2023-01-29"
+                                },
+                                "updated_at": {
+                                    "description": "Date of update",
+                                    "type": "string",
+                                    "example": "2023-01-29"
+                                },
+                                "deleted_at": {
+                                    "description": "Date of deletion",
+                                    "type": "string",
+                                    "example": "2023-01-29"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "ToolsAndTechnologiesSchema": {
+                "title": "ToolsAndTechnologies",
+                "description": "Tools and technologies model",
+                "properties": {
+                    "data": {
+                        "description": "List of tools and technologies",
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "id": {
+                                    "description": "ID of the tool",
+                                    "type": "number",
+                                    "example": 1
+                                },
+                                "name": {
+                                    "description": "Name of the tool",
+                                    "type": "string",
+                                    "example": "Docker"
+                                },
+                                "view_order": {
+                                    "description": "Suggested order of visualization",
+                                    "type": "number",
+                                    "example": "1"
+                                },
+                                "use_percentage": {
+                                    "description": "Percentage of use",
+                                    "type": "number",
+                                    "example": "90"
                                 },
                                 "created_at": {
                                     "description": "Date of creation",
