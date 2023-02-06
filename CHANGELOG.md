@@ -1,4 +1,4 @@
-# Next version
+# 0.10.0
 + Add tools and techonologies (migration, repository, gateway and controller)
 
 ## 0.9.0
