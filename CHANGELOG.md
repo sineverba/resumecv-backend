@@ -1,5 +1,6 @@
 # Next version
 + Refactor Semaphore (old docker-compose)
++ Add Qodana
 
 ## 0.10.0
 + Add tools and techonologies (migration, repository, gateway and controller)
