@@ -1,5 +1,13 @@
 version: 2.1
+orbs:
+  qodana: jetbrains/qodana@2022.3.2
 jobs:
+  scan:
+    machine:
+      image: 'ubuntu-2004:2022.10.1'
+    steps:
+      - checkout
+      - qodana/scan
   test-unit:
     docker:
       - image: sineverba/php8xc:1.13.0
@@ -14,8 +22,11 @@ workflows:
   version: 2
   tests:
     jobs:
+      - scan:
+          context: qodana
       - test-unit:
           filters:
             branches:
               only:
+                - master
                 - develop

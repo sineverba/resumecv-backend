@@ -8,6 +8,7 @@ BINFMT_VERSION=qemu-v7.0.0-28
 PHP8XC_VERSION=1.13.0
 PHP_VERSION=8.2.2
 PWD:=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
+QODANA_VERSION=2022.3-eap
 
 preparemulti:
 	mkdir -vp ~/.docker/cli-plugins
@@ -62,3 +63,9 @@ sonar:
 	docker run --rm -e SONAR_HOST_URL=$(SONAR_HOST_URL) -e SONAR_LOGIN=$(SONAR_LOGIN) -v $(PWD):"/usr/src" sonarsource/sonar-scanner-cli:$(SONARSCANNER_VERSION)
 	sed -i -e 's,/usr/src,/data,g' sonar-project.properties
 	sed -i -e 's,/usr/src,/data,g' coverage/clover.xml
+
+qodana:
+	docker run --rm -it \
+		-v $(PWD)/:/data/project/ \
+		-p 8080:8080 jetbrains/qodana-php:$(QODANA_VERSION) \
+		--show-report
