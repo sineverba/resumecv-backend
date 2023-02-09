@@ -1,4 +1,4 @@
-# Next version
+# 1.0.0
 + Refactor Semaphore (old docker-compose)
 + Add Qodana
 + Add working mode (migration, repository, gateway and controller)
