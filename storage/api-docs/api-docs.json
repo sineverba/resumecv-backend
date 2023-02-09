@@ -101,6 +101,27 @@
                     }
                 }
             }
+        },
+        "/api/v1/working-mode": {
+            "get": {
+                "tags": [
+                    "WorkingMode"
+                ],
+                "summary": "Working mode",
+                "operationId": "68bb14848a247c5533e7dc4c899b7c84",
+                "responses": {
+                    "200": {
+                        "description": "Working Mode",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/WorkingModeSchema"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -291,6 +312,52 @@
                                     "description": "Percentage of use",
                                     "type": "number",
                                     "example": "90"
+                                },
+                                "created_at": {
+                                    "description": "Date of creation",
+                                    "type": "string",
+                                    "example": "2023-01-29"
+                                },
+                                "updated_at": {
+                                    "description": "Date of update",
+                                    "type": "string",
+                                    "example": "2023-01-29"
+                                },
+                                "deleted_at": {
+                                    "description": "Date of deletion",
+                                    "type": "string",
+                                    "example": "2023-01-29"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "WorkingModeSchema": {
+                "title": "Working Mode",
+                "description": "Working Mode model",
+                "properties": {
+                    "data": {
+                        "description": "Working Mode",
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "id": {
+                                    "description": "ID of the mode",
+                                    "type": "number",
+                                    "example": 1
+                                },
+                                "name": {
+                                    "description": "Name",
+                                    "type": "string",
+                                    "example": "Test Drive Development"
+                                },
+                                "view_order": {
+                                    "description": "Suggested order of visualization",
+                                    "type": "number",
+                                    "example": "1"
                                 },
                                 "created_at": {
                                     "description": "Date of creation",
