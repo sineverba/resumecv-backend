@@ -7,9 +7,6 @@ SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 
 SET NAMES utf8mb4;
 
-CREATE DATABASE `resumecv` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `resumecv`;
-
 DROP TABLE IF EXISTS `databases`;
 CREATE TABLE `databases` (
                              `id` bigint unsigned NOT NULL AUTO_INCREMENT,
@@ -64,7 +61,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
                                                           (1,	'2023_01_26_091300_create_databases_table',	1),
                                                           (2,	'2023_01_31_105800_create_frameworks_table',	1),
                                                           (3,	'2023_02_02_193800_create_programming_languages_table',	1),
-                                                          (4,	'2023_02_03_142000_create_tools_table',	2);
+                                                          (4,	'2023_02_03_142000_create_tools_table',	2),
+                                                          (5,	'2023_02_08_171000_create_working_mode_table',	3);
 
 DROP TABLE IF EXISTS `programming_languages`;
 CREATE TABLE `programming_languages` (
@@ -110,4 +108,23 @@ INSERT INTO `tools` (`id`, `name`, `view_order`, `use_percentage`, `created_at`,
                                                                                                                  (11,	'AWS',	11,	40,	'2023-02-03 14:31:21',	'2023-02-03 14:31:21',	NULL),
                                                                                                                  (12,	'Postman',	12,	100,	'2023-02-03 14:31:21',	'2023-02-03 14:31:21',	NULL);
 
--- 2023-02-03 14:37:01
+DROP TABLE IF EXISTS `working_mode`;
+CREATE TABLE `working_mode` (
+                                `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+                                `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+                                `view_order` int NOT NULL,
+                                `created_at` timestamp NULL DEFAULT NULL,
+                                `updated_at` timestamp NULL DEFAULT NULL,
+                                `deleted_at` timestamp NULL DEFAULT NULL,
+                                PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+INSERT INTO `working_mode` (`id`, `name`, `view_order`, `created_at`, `updated_at`, `deleted_at`) VALUES
+                                                                                                      (1,	'Test Drive Development',	1,	'2023-02-09 07:56:45',	'2023-02-09 07:56:45',	NULL),
+                                                                                                      (2,	'Coding',	2,	'2023-02-09 07:56:53',	'2023-02-09 07:56:53',	NULL),
+                                                                                                      (3,	'Test all project',	3,	'2023-02-09 07:57:05',	'2023-02-09 07:57:05',	NULL),
+                                                                                                      (4,	'Validating by Sonarqube',	4,	'2023-02-09 07:57:20',	'2023-02-09 07:57:20',	NULL),
+                                                                                                      (5,	'Committing and merging into develop',	5,	'2023-02-09 07:57:35',	'2023-02-09 07:57:35',	NULL),
+                                                                                                      (6,	'CI / CD',	6,	'2023-02-09 07:57:45',	'2023-02-09 07:57:45',	NULL);
+
+-- 2023-02-09 07:57:56

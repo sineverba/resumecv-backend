@@ -6,10 +6,12 @@ use App\Interfaces\DatabasesInterface;
 use App\Interfaces\FrameworksInterface;
 use App\Interfaces\ProgrammingLanguagesInterface;
 use App\Interfaces\ToolsInterface;
+use App\Interfaces\WorkingModeInterface;
 use App\Repositories\DatabasesRepository;
 use App\Repositories\FrameworksRepository;
 use App\Repositories\ProgrammingLanguagesRepository;
 use App\Repositories\ToolsRepository;
+use App\Repositories\WorkingModeRepository;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider
@@ -31,6 +33,10 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(
             ToolsInterface::class,
             ToolsRepository::class,
+        );
+        $this->app->bind(
+            WorkingModeInterface::class,
+            WorkingModeRepository::class,
         );
     }
 }

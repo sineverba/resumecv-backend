@@ -25,3 +25,7 @@ Route::get(
     'App\Http\Controllers\Api\V1\ProgrammingLanguagesController@index')->name('programming_languages_index');
 // Tools and technologies
 Route::get('/tools', 'App\Http\Controllers\Api\V1\ToolsController@index')->name('tools_index');
+// Working Mode
+Route::get(
+    '/working-mode',
+    'App\Http\Controllers\Api\V1\WorkingModeController@index')->name('working_mode_index');

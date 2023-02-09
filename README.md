@@ -13,6 +13,7 @@ Resume CV Backend
 | Semaphore CI | [![Build Status](https://sineverba.semaphoreci.com/badges/resumecv-backend/branches/master.svg?style=shields&key=8993a8be-8cf8-480c-9d0e-0cc0041daf4b)](https://sineverba.semaphoreci.com/projects/resumecv-backend) |
 | CircleCI     | [![CircleCI](https://dl.circleci.com/status-badge/img/gh/sineverba/resumecv-backend/tree/master.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/sineverba/resumecv-backend/tree/master)             |
 | SonarCloud   | [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=sineverba_resumecv-backend&metric=alert_status)](https://sonarcloud.io/dashboard?id=sineverba_resumecv-backend)                     |
+| Qodana | [https://qodana.cloud/projects/zxPYN/reports/3oO1a](https://qodana.cloud/projects/zxPYN/reports/3oO1a) |
 
 ## First setup
 1. `$ composer install`
