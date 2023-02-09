@@ -1,13 +1,14 @@
 include .env
 IMAGE_NAME=registry.gitlab.com/cicdprojects/resumecv-backend
 CONTAINER_NAME=resumecv-backend
-APP_VERSION=0.10.0-dev
+APP_VERSION=1.0.0-dev
 SONARSCANNER_VERSION=4.8.0
 BUILDX_VERSION=0.10.2
 BINFMT_VERSION=qemu-v7.0.0-28
-PHP8XC_VERSION=1.12.0
-PHP_VERSION=8.2.1
+PHP8XC_VERSION=1.13.0
+PHP_VERSION=8.2.2
 PWD:=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
+QODANA_VERSION=2022.3-eap
 
 preparemulti:
 	mkdir -vp ~/.docker/cli-plugins
@@ -32,10 +33,10 @@ test:
 	docker run --rm --entrypoint php $(IMAGE_NAME):$(APP_VERSION) /var/www/artisan key:generate --show
 
 migrate:
-	docker-compose exec app php artisan migrate
+	docker compose exec app php artisan migrate
 
 swagger:
-	docker-compose exec app php artisan l5-swagger:generate
+	docker compose exec app php artisan l5-swagger:generate
 
 fixswagger:
 	sudo chown -R sineverba:sineverba resources/
@@ -62,3 +63,9 @@ sonar:
 	docker run --rm -e SONAR_HOST_URL=$(SONAR_HOST_URL) -e SONAR_LOGIN=$(SONAR_LOGIN) -v $(PWD):"/usr/src" sonarsource/sonar-scanner-cli:$(SONARSCANNER_VERSION)
 	sed -i -e 's,/usr/src,/data,g' sonar-project.properties
 	sed -i -e 's,/usr/src,/data,g' coverage/clover.xml
+
+qodana:
+	docker run --rm -it \
+		-v $(PWD)/:/data/project/ \
+		-p 8080:8080 jetbrains/qodana-php:$(QODANA_VERSION) \
+		--show-report

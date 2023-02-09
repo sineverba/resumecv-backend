@@ -1,4 +1,9 @@
-# 0.10.0
+# 1.0.0
++ Refactor Semaphore (old docker-compose)
++ Add Qodana
++ Add working mode (migration, repository, gateway and controller)
+
+## 0.10.0
 + Add tools and techonologies (migration, repository, gateway and controller)
 
 ## 0.9.0

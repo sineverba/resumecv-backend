@@ -1,7 +1,7 @@
 ##########################
 ##       SETUP          ##
 ##########################
-FROM php:8.2.1-cli-alpine as builder
+FROM php:8.2.2-cli-alpine as builder
 
 COPY --from=composer:2.5.1 /usr/bin/composer /usr/bin/composer
 
@@ -16,7 +16,7 @@ RUN composer install --no-dev
 ##########################
 ##       TEST           ##
 ##########################
-FROM php:8.2.1-cli-alpine as test
+FROM php:8.2.2-cli-alpine as test
 
 RUN mkdir -p /usr/src/docker
 
@@ -32,7 +32,7 @@ RUN vendor/bin/phpunit
 ##########################
 ##       DEPLOY         ##
 ##########################
-FROM php:8.2.1-apache as deploy
+FROM php:8.2.2-apache as deploy
 
 RUN apt-get update -y && apt-get upgrade -y
 
@@ -50,7 +50,7 @@ COPY --from=builder /usr/src/app /var/www
 RUN chown -R www-data:www-data /var/www
 
 # Generate swagger
-ARG APP_VERSION=0.10.0
+ARG APP_VERSION=1.0.0
 ARG L5_SWAGGER_CONST_HOST=https://resumecvbackend.k2p.it
 ARG L5_SWAGGER_USE_ABSOLUTE_PATH=false
 RUN rm /var/www/storage/api-docs/api-docs.json && \
