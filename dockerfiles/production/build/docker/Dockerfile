@@ -27,7 +27,7 @@ WORKDIR /usr/src/app
 
 RUN composer install
 
-RUN vendor/bin/phpunit
+RUN vendor/bin/phpunit --no-coverage
 
 ##########################
 ##       DEPLOY         ##
@@ -50,7 +50,7 @@ COPY --from=builder /usr/src/app /var/www
 RUN chown -R www-data:www-data /var/www
 
 # Generate swagger
-ARG APP_VERSION=1.0.0
+ARG APP_VERSION=1.1.0
 ARG L5_SWAGGER_CONST_HOST=https://resumecvbackend.k2p.it
 ARG L5_SWAGGER_USE_ABSOLUTE_PATH=false
 RUN rm /var/www/storage/api-docs/api-docs.json && \
