@@ -1,5 +1,6 @@
 # Next version
 + Upgrade dependencies
++ Upgrade Laravel
 
 ## 1.0.0
 + Refactor Semaphore (old docker-compose)
