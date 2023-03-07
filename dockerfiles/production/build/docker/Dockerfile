@@ -1,9 +1,9 @@
 ##########################
 ##       SETUP          ##
 ##########################
-FROM php:8.2.2-cli-alpine as builder
+FROM php:8.2.3-cli-alpine as builder
 
-COPY --from=composer:2.5.1 /usr/bin/composer /usr/bin/composer
+COPY --from=composer:2.5.4 /usr/bin/composer /usr/bin/composer
 
 RUN mkdir -p /usr/src/docker
 
@@ -16,7 +16,7 @@ RUN composer install --no-dev
 ##########################
 ##       TEST           ##
 ##########################
-FROM php:8.2.2-cli-alpine as test
+FROM php:8.2.3-cli-alpine as test
 
 RUN mkdir -p /usr/src/docker
 
@@ -32,7 +32,7 @@ RUN vendor/bin/phpunit
 ##########################
 ##       DEPLOY         ##
 ##########################
-FROM php:8.2.2-apache as deploy
+FROM php:8.2.3-apache as deploy
 
 RUN apt-get update -y && apt-get upgrade -y
 
