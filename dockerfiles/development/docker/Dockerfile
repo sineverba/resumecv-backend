@@ -1,4 +1,4 @@
-FROM php:8.2.2-fpm
+FROM php:8.2.3-fpm
 
 # Arguments defined in docker-compose.yml
 ARG user
@@ -21,7 +21,7 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
 
 # Get latest Composer
-COPY --from=composer:2.5.1 /usr/bin/composer /usr/bin/composer
+COPY --from=composer:2.5.4 /usr/bin/composer /usr/bin/composer
 
 # Create system user to run Composer and Artisan Commands
 RUN useradd -G www-data,root -u $uid -d /home/$user $user

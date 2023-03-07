@@ -1,14 +1,15 @@
 include .env
 IMAGE_NAME=registry.gitlab.com/cicdprojects/resumecv-backend
 CONTAINER_NAME=resumecv-backend
-APP_VERSION=1.0.0-dev
+APP_VERSION=1.1.0-dev
 SONARSCANNER_VERSION=4.8.0
-BUILDX_VERSION=0.10.2
+BUILDX_VERSION=0.10.3
 BINFMT_VERSION=qemu-v7.0.0-28
-PHP8XC_VERSION=1.13.0
-PHP_VERSION=8.2.2
+PHP8XC_VERSION=1.14.0
+PHP_VERSION=8.2.3
 PWD:=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 QODANA_VERSION=2022.3-eap
+SONARSCANNER_VERSION=4.8.0
 
 preparemulti:
 	mkdir -vp ~/.docker/cli-plugins
@@ -21,7 +22,7 @@ preparemulti:
 	docker buildx create --name multiarch --driver docker-container --use
 	docker buildx inspect --bootstrap --builder multiarch
 
-multi:
+multi: preparemulti
 	docker buildx build \
 		--platform linux/arm64/v8,linux/amd64,linux/arm/v6,linux/arm/v7 \
 		--tag $(IMAGE_NAME):$(APP_VERSION) \
@@ -35,14 +36,17 @@ test:
 migrate:
 	docker compose exec app php artisan migrate
 
-swagger:
+swagger: fixswagger
 	docker compose exec app php artisan l5-swagger:generate
 
 fixswagger:
 	sudo chown -R sineverba:sineverba resources/
 
 build:
-	docker build --tag $(IMAGE_NAME):$(APP_VERSION) --file dockerfiles/production/build/docker/Dockerfile "."
+	docker build \
+		--tag $(IMAGE_NAME):$(APP_VERSION) \
+		--file dockerfiles/production/build/docker/Dockerfile \
+		"."
 
 push:
 	docker push $(IMAGE_NAME):$(APP_VERSION)
@@ -57,12 +61,12 @@ destroy:
 	docker image rm $(IMAGE_NAME):$(APP_VERSION)
 
 sonar:
-	sudo chown sineverba:sineverba coverage/
-	sed -i -e 's,/data,/usr/src,g' sonar-project.properties
-	sed -i -e 's,/data,/usr/src,g' coverage/clover.xml
-	docker run --rm -e SONAR_HOST_URL=$(SONAR_HOST_URL) -e SONAR_LOGIN=$(SONAR_LOGIN) -v $(PWD):"/usr/src" sonarsource/sonar-scanner-cli:$(SONARSCANNER_VERSION)
-	sed -i -e 's,/usr/src,/data,g' sonar-project.properties
-	sed -i -e 's,/usr/src,/data,g' coverage/clover.xml
+	docker run --rm -it \
+		--name sonarscanner \
+		-v $(PWD):/usr/src \
+		-e SONAR_HOST_URL=$(SONAR_HOST_URL) \
+		-e SONAR_LOGIN=$(SONAR_TOKEN) \
+		sonarsource/sonar-scanner-cli:$(SONARSCANNER_VERSION)
 
 qodana:
 	docker run --rm -it \
