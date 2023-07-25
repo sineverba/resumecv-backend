@@ -7,7 +7,7 @@ services:
                 uid: 1000
             context: ./
             dockerfile: dockerfiles/development/docker/Dockerfile
-        image: sineverba/resumecv-backend-app:1.1.0
+        image: sineverba/resumecv-backend-app:1.1.0-dev
         container_name: resumecv-backend-app
         working_dir: /var/www/
         volumes:
@@ -16,7 +16,7 @@ services:
             - resumecv-backend
 
     nginx:
-        image: nginx:1.23.3-alpine-slim
+        image: nginx:1.25.1-alpine3.17-slim
         container_name: resumecv-backend-nginx
         ports:
             - "8000:80"
@@ -26,7 +26,7 @@ services:
         networks:
             - resumecv-backend
     db:
-        image: mysql:8.0.32
+        image: mysql:8.0.34
         container_name: resumecv-backend-mysql
         environment:
             MYSQL_DATABASE: resumecv
