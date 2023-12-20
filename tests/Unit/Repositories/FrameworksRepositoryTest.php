@@ -5,13 +5,11 @@ namespace Tests\Unit\Repositories;
 use App\Repositories\FrameworksRepository;
 use Database\Seeders\DatabaseSeeder;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class FrameworksRepositoryTest extends TestCase
 {
     use DatabaseMigrations;
-    use RefreshDatabase;
 
     /**
      * Test can instantiate the class
