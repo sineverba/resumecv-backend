@@ -4,7 +4,6 @@ namespace Tests\Feature\Controllers;
 
 use Database\Seeders\DatabaseSeeder;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Testing\Fluent\AssertableJson;
 use Tests\TestCase;
 
@@ -12,7 +11,6 @@ class DatabasesControllerTest extends TestCase
 {
 
     use DatabaseMigrations;
-    use RefreshDatabase;
 
     public function test_can_index_zero_items()
     {

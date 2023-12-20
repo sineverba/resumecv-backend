@@ -6,16 +6,16 @@ agent:
 
   containers:
     - name: main
-      image: sineverba/php8xc:1.15.0
+      image: sineverba/php8xc:1.16.0
 
 global_job_config:
   secrets:
     - name: ACCESS_TOKENS
   env_vars:
     - name: SONARSCANNER_VERSION
-      value: 4.8.0.2856
+      value: 5.0.1.3006
     - name: PHP8XC_VERSION
-      value: 1.15.0
+      value: 1.16.0
 
 blocks:
   - name: "Unit tests"

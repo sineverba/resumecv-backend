@@ -1,14 +1,14 @@
 include .env
 IMAGE_NAME=registry.gitlab.com/cicdprojects/resumecv-backend
 CONTAINER_NAME=resumecv-backend
-APP_VERSION=1.2.0-dev
-SONARSCANNER_VERSION=4.8.0
-BUILDX_VERSION=0.11.2
+APP_VERSION=1.3.0-dev
+SONARSCANNER_VERSION=5.0.1
+BUILDX_VERSION=0.12.0
 BINFMT_VERSION=qemu-v7.0.0-28
-PHP8XC_VERSION=1.15.0
-PHP_VERSION=8.2.8
+PHP8XC_VERSION=1.16.0
+PHP_VERSION=8.3.0
 PWD:=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
-SONARSCANNER_VERSION=4.8.0
+
 
 preparemulti:
 	mkdir -vp ~/.docker/cli-plugins
@@ -64,10 +64,10 @@ stop:
 
 destroy:
 	docker compose down
-	docker image rm nginx:1.25.1-alpine3.17-slim
+	docker image rm nginx:1.25.3-alpine3.18-slim
 	docker image rm mysql:8.0.34
 	docker image rm adminer:4.8.1-standalone
-	docker image rm php:8.2.8-fpm
+	docker image rm php:8.3.0-fpm
 	docker image rm $(IMAGE_NAME):$(APP_VERSION)
 
 sonar:
