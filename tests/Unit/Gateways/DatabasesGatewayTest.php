@@ -4,13 +4,11 @@ namespace Tests\Unit\Gateways;
 
 use Database\Seeders\DatabaseSeeder;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class DatabasesGatewayTest extends TestCase
 {
     use DatabaseMigrations;
-    use RefreshDatabase;
 
     private $gateway = "App\Gateways\DatabasesGateway";
 

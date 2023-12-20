@@ -16,7 +16,7 @@ services:
             - resumecv-backend
 
     nginx:
-        image: nginx:1.25.1-alpine3.17-slim
+        image: nginx:1.25.3-alpine3.18-slim
         container_name: resumecv-backend-nginx
         ports:
             - "8000:80"
@@ -26,7 +26,7 @@ services:
         networks:
             - resumecv-backend
     db:
-        image: mysql:8.0.34
+        image: mysql:8.2.0
         container_name: resumecv-backend-mysql
         environment:
             MYSQL_DATABASE: resumecv
