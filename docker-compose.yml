@@ -7,7 +7,7 @@ services:
                 uid: 1000
             context: ./
             dockerfile: dockerfiles/development/docker/Dockerfile
-        image: sineverba/resumecv-backend-app:1.2.0-dev
+        image: sineverba/resumecv-backend-app:1.3.0-dev
         container_name: resumecv-backend-app
         working_dir: /var/www/
         volumes:
