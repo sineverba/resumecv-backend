@@ -1,7 +1,7 @@
 include .env
 IMAGE_NAME=registry.gitlab.com/cicdprojects/resumecv-backend
 CONTAINER_NAME=resumecv-backend
-APP_VERSION=1.2.0-dev
+APP_VERSION=1.3.0-dev
 SONARSCANNER_VERSION=5.0.1
 BUILDX_VERSION=0.12.0
 BINFMT_VERSION=qemu-v7.0.0-28
